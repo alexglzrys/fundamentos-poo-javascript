@@ -39,3 +39,35 @@ Student.prototype.aprobarCurso = function (nuevo_curso) {
 // Crear ina instancia del prototipo Student
 const juanita = new Student("Juanita", 28, ['Videojuegos', 'Blender']);
 juanita.aprobarCurso('Unreal Engine 4');
+
+
+
+// ? Prototipos con la sintáxis de Clases
+
+class Estudiante {
+    /*constructor(nombre, edad, cursos_aprobados) { 
+        this.nombre = nombre;
+        this.edad = edad;
+        this.cursos_aprobados = cursos_aprobados;
+    }*/
+
+    // ? Existe un patron llamado ROR (recibe un objeto y retorna un objeto), el cual nos permite enviar los parámetros a un metodo o función en desorden
+    // ! Esto nos ayuda a no tener que memorizarlos, y solo enviar aquellos que necesitamos, dejado el resto con sus valores por defecto
+
+    constructor({ nombre, edad, cursos_aprobados = [], diplomas = 0}) {
+        this.nombre = nombre;
+        this.edad = edad;
+        this.cursos_aprobados = cursos_aprobados;
+        this.diplomas = diplomas
+    }
+
+    aprobarCurso(nuevo_curso) {
+        this.cursos_aprobados.push(nuevo_curso)
+        this.diplomas++;
+    }
+}
+
+// const miguel = new Estudiante('Miguel', 21, ['Canciones básicas', 'Juegos con Unity']);
+const miguel = new Estudiante({edad: 21, nombre: 'Miguel'});
+miguel.aprobarCurso('Análisis de datos');
+
