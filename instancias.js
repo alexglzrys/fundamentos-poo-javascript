@@ -27,22 +27,67 @@ class LearningPath {
     }
 }
 
+// * Primer pilar de la POO: Abstracción
 // Abstraer el problema en partes mas pequeñas llamadas clases ayuda a un mejor entendimiento del mismo
 
 class Course {
     constructor({name, description, classes = [], duration = undefined}) {
-        this.name = name;
+        this._name = name;
         this.description = description;
         this.duration = duration;
         this.classes = classes;
+    }
+
+    // * Segundo pilar de la POO: Encapsulamiento
+    // Un objeto puede tener propiedades y métodos, publicos, privados y protegidos
+    // ! En JS no existen propiedades o métodos privados / protegidos: TODO ES PÚBLICO
+    // ? Sin embargo existen convenciones para indicar a los programadores que cierta propiedad o atributo debería ser considerado como privado, y no debería llamarse desde fuera de la clase
+    // ? se hace uso de _propiedad o _metodo para indicar que debería ser tratado como privado
+
+    // Los getters nos ayudan a acceder a propiedades que fueron expresadas como privadas
+    // El nombre de los mismos se debe corresponder con el de las propiedades
+    get name() {
+        return this._name;
+    }
+
+    // Los setters nos ayudan a asignar valores a propiedades que fueron marcadas como PRIVADAS
+    // Podemos declarar rutinas para sanar la información antes de asignarla
+    set name(nuevo_nombre) {
+        if (nuevo_nombre === '') return;
+        if (nuevo_nombre.toLowerCase().includes('curso malito')) {
+            console.error('Hey que tratas de hacer...');
+        } else {
+            this._name = nuevo_nombre;
+        }
     }
 }
 
 class Classe {
     constructor({name, video, duration}) {
-        this.name = name;
-        this.video = video;
-        this.duration = duration;
+        this._name = name;
+        this._video = video;
+        this._duration = duration;
+    }
+    get name() {
+        return this._name;
+    }
+    get video() {
+        return this._video;
+    }
+    get duration() {
+        return this._duration;
+    }
+    set name(new_name) {
+        if (new_name === '') return;
+        this._name = new_name;
+    }
+    set video(new_video) {
+        if (new_video === '') return;
+        this._video = new_video;
+    }
+    set duration(new_duration) {
+        if (new_duration === '') return;
+        this._duration = new_duration;
     }
 }
 
