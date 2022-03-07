@@ -10,5 +10,16 @@
     <script src="main.js"></script>
     <script src="literal.js"></script>
     <script src="instancias.js"></script>
+    
+    <!-- Es posible trabajar con módulos de JS desde el navegador, pero el soporte es algo reciente -->
+    <script type="module">
+        import { PlatziClass } from "/src/modulos.js";
+        const clase = new PlatziClass({
+            name: 'Mi primera clase',
+            videoID: 'MSD8FD15S1_*SD5SRE'
+        })
+        clase.reproducir();
+        clase.pausar();
+    </script>
 </body>
 </html>
